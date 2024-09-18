@@ -1,0 +1,236 @@
+STATIC CODE ANALYSIS: 
+
+Ran "bandit -r" on repository "https://github.com/abbushadshaikh/todoist-api-python" locally after cloning it.
+Discover few potential low level security issues:
+
+OUTPUT: 
+
+[main]  INFO    profile include tests: None
+[main]  INFO    profile exclude tests: None
+[main]  INFO    cli include tests: None
+[main]  INFO    cli exclude tests: None
+[main]  INFO    running on Python 3.11.9
+Run started:2024-09-18 07:37:24.260626
+
+Test results:
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'oauth/access_token'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.9/plugins/b105_hardcoded_password_string.html
+   Location: ./endpoints.py:26:17
+25      AUTHORIZE_ENDPOINT = "oauth/authorize"
+26      TOKEN_ENDPOINT = "oauth/access_token"
+27      REVOKE_TOKEN_ENDPOINT = "access_tokens/revoke"
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'access_tokens/revoke'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.9/plugins/b105_hardcoded_password_string.html
+   Location: ./endpoints.py:27:24
+26      TOKEN_ENDPOINT = "oauth/access_token"
+27      REVOKE_TOKEN_ENDPOINT = "access_tokens/revoke"
+28
+
+--------------------------------------------------
+
+Code scanned:
+        Total lines of code: 844
+        Total lines skipped (#nosec): 0
+
+Run metrics:
+        Total issues (by severity):
+                Undefined: 0
+                Low: 2
+                Medium: 0
+                High: 0
+        Total issues (by confidence):
+                Undefined: 0
+                Low: 0
+                Medium: 2
+                High: 0
+Files skipped (0):
+
+These are low and non-critical vulnerabilities, it;s mostly informative!
+
+
+I've used another tool called "Pylint" to find issues related to code structure, design and best practices:
+
+HERE IS OUTPUT:
+
+pylint __init__.py api.py api_async.py authentication.py endpoints.py headers.py http_requests.py models.py py.typed utils.py                                  1 ↵
+************* Module todoist_api_python.api
+api.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+api.py:36:0: C0115: Missing class docstring (missing-class-docstring)
+api.py:48:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:53:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:63:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:70:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:74:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:78:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:82:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:86:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:96:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:101:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:106:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:113:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:117:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:121:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:128:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:133:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:138:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:145:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:151:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:155:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:160:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:165:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:172:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:178:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:182:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:187:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:192:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:199:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:203:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:207:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:211:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:216:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:221:4: C0116: Missing function or method docstring (missing-function-docstring)
+api.py:221:4: R0913: Too many arguments (7/5) (too-many-arguments)
+api.py:36:0: R0904: Too many public methods (33/20) (too-many-public-methods)
+************* Module todoist_api_python.api_async
+api_async.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+api_async.py:23:0: C0115: Missing class docstring (missing-class-docstring)
+api_async.py:27:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:30:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:33:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:36:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:39:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:42:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:45:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:48:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:51:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:54:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:55:31: W0108: Lambda may not be necessary (unnecessary-lambda)
+api_async.py:57:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:60:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:63:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:66:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:69:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:72:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:75:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:80:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:85:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:88:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:91:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:94:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:97:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:102:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:105:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:108:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:109:31: W0108: Lambda may not be necessary (unnecessary-lambda)
+api_async.py:111:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:114:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:117:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:120:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:121:31: W0108: Lambda may not be necessary (unnecessary-lambda)
+api_async.py:123:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:126:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:129:4: C0116: Missing function or method docstring (missing-function-docstring)
+api_async.py:129:4: R0913: Too many arguments (7/5) (too-many-arguments)
+api_async.py:23:0: R0904: Too many public methods (33/20) (too-many-public-methods)
+************* Module todoist_api_python.authentication
+authentication.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+authentication.py:20:0: C0116: Missing function or method docstring (missing-function-docstring)
+authentication.py:31:0: C0116: Missing function or method docstring (missing-function-docstring)
+authentication.py:37:0: C0116: Missing function or method docstring (missing-function-docstring)
+authentication.py:52:0: C0116: Missing function or method docstring (missing-function-docstring)
+authentication.py:58:0: C0115: Missing class docstring (missing-class-docstring)
+authentication.py:62:0: C0116: Missing function or method docstring (missing-function-docstring)
+************* Module todoist_api_python.endpoints
+endpoints.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+endpoints.py:32:0: C0116: Missing function or method docstring (missing-function-docstring)
+endpoints.py:36:0: C0116: Missing function or method docstring (missing-function-docstring)
+endpoints.py:40:0: C0116: Missing function or method docstring (missing-function-docstring)
+************* Module todoist_api_python.headers
+headers.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+headers.py:8:0: C0116: Missing function or method docstring (missing-function-docstring)
+************* Module todoist_api_python.http_requests
+http_requests.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+http_requests.py:12:0: C0116: Missing function or method docstring (missing-function-docstring)
+http_requests.py:27:0: C0116: Missing function or method docstring (missing-function-docstring)
+http_requests.py:52:0: C0116: Missing function or method docstring (missing-function-docstring)
+************* Module todoist_api_python.models
+models.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models.py:8:0: C0103: Class name "VIEW_STYLE" doesn't conform to PascalCase naming style (invalid-name)
+models.py:12:0: C0115: Missing class docstring (missing-class-docstring)
+models.py:12:0: R0902: Too many instance attributes (13/7) (too-many-instance-attributes)
+models.py:28:4: C0116: Missing function or method docstring (missing-function-docstring)
+models.py:47:0: C0115: Missing class docstring (missing-class-docstring)
+models.py:54:4: C0116: Missing function or method docstring (missing-function-docstring)
+models.py:64:0: C0115: Missing class docstring (missing-class-docstring)
+models.py:73:4: C0116: Missing function or method docstring (missing-function-docstring)
+models.py:82:4: C0116: Missing function or method docstring (missing-function-docstring)
+models.py:92:4: C0116: Missing function or method docstring (missing-function-docstring)
+models.py:115:0: C0115: Missing class docstring (missing-class-docstring)
+models.py:115:0: R0902: Too many instance attributes (19/7) (too-many-instance-attributes)
+models.py:138:4: C0116: Missing function or method docstring (missing-function-docstring)
+models.py:169:4: C0116: Missing function or method docstring (missing-function-docstring)
+models.py:202:4: C0116: Missing function or method docstring (missing-function-docstring)
+models.py:236:0: C0115: Missing class docstring (missing-class-docstring)
+models.py:245:4: C0116: Missing function or method docstring (missing-function-docstring)
+models.py:273:0: C0115: Missing class docstring (missing-class-docstring)
+models.py:279:4: C0116: Missing function or method docstring (missing-function-docstring)
+models.py:288:0: C0115: Missing class docstring (missing-class-docstring)
+models.py:288:0: R0902: Too many instance attributes (12/7) (too-many-instance-attributes)
+models.py:306:4: C0116: Missing function or method docstring (missing-function-docstring)
+models.py:323:0: C0115: Missing class docstring (missing-class-docstring)
+models.py:332:4: C0116: Missing function or method docstring (missing-function-docstring)
+models.py:349:0: C0115: Missing class docstring (missing-class-docstring)
+models.py:357:4: C0116: Missing function or method docstring (missing-function-docstring)
+models.py:368:0: C0115: Missing class docstring (missing-class-docstring)
+models.py:373:4: C0116: Missing function or method docstring (missing-function-docstring)
+models.py:381:0: C0115: Missing class docstring (missing-class-docstring)
+models.py:381:0: R0902: Too many instance attributes (21/7) (too-many-instance-attributes)
+models.py:405:4: C0116: Missing function or method docstring (missing-function-docstring)
+models.py:414:0: C0115: Missing class docstring (missing-class-docstring)
+models.py:419:4: C0116: Missing function or method docstring (missing-function-docstring)
+models.py:424:0: C0115: Missing class docstring (missing-class-docstring)
+models.py:432:4: C0116: Missing function or method docstring (missing-function-docstring)
+models.py:445:0: C0115: Missing class docstring (missing-class-docstring)
+models.py:450:4: C0116: Missing function or method docstring (missing-function-docstring)
+models.py:456:4: C0116: Missing function or method docstring (missing-function-docstring)
+************* Module todoist_api_python.utils
+utils.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+utils.py:8:0: C0116: Missing function or method docstring (missing-function-docstring)
+utils.py:16:0: C0116: Missing function or method docstring (missing-function-docstring)
+
+-----------------------------------
+Your code has been rated at 7.48/10
+---------------------------------------------
+
+Here is my analysis based on the output and on some research:
+
+Main Issues Highlighted in the Code:
+
+1. Missing Docstrings (C0114, C0115, C0116): 
+   # Description: Missing docstrings in modules, classes, and functions can affect code readability and maintainability. 
+   # Fix: Add meaningful docstrings to every class, function, and module.
+   # Security Impact if Not Fixed: Misunderstanding the purpose and functionality of the code can lead to incorrect changes or usage, which may introduce security vulnerabilities, such as incorrect authentication or validation logic being misused.
+
+2. Too Many Arguments (R0913):
+   # Description: Functions with more than 5 arguments are harder to maintain and understand. This can lead to complex function calls that are error-prone.
+   # Fix: Refactor the code by grouping related parameters into objects or dictionaries.
+   # Security Impact if Not Fixed: Misuse or incorrect handling of multiple arguments, especially if they are related to security mechanisms like authentication tokens, API keys, or sensitive data, could lead to issues such as information leakage or improper authorization.
+
+3. Naming Conventions (C0103): 
+   # Description: Class names like VIEW_STYLE not conforming to PascalCase can confuse developers and make the codebase inconsistent.
+   # Fix: Ensure that class names follow the PascalCase naming convention (e.g., ViewStyle).
+   # Security Impact if Not Fixed: Inconsistent naming may lead to confusion, especially in a larger codebase. This can cause developers to misuse classes or miss potential security considerations, like improperly named classes handling security-sensitive data or operations.
+
+
+
+So, Overall Potential Security Impacts If Not Addressed:
+
+    1. Information Leakage: Poor documentation, improper function calls, or too many arguments can lead to incorrect handling of sensitive data.
+    2. Improper Authentication or Authorization: Large classes with too many public methods may cause access to security-sensitive functions to be mismanaged or bypassed.
+    3. Code Maintainability Issues: Overcomplicated code can introduce accidental security bugs due to poor understanding, leading to vulnerabilities such as improper input validation, broken authentication, or data exposure.
